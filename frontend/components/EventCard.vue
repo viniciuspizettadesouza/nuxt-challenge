@@ -15,7 +15,6 @@ const props = defineProps({
     />
     <div class="px-6 py-4">
       <div class="font-bold text-xl mb-2 text-gray-700">{{ event.name }}</div>
-      <p class="text-gray-700 text-base">{{ event.category }}</p>
       <p class="text-gray-700 text-base">
         Location: {{ event.location.name }}, {{ event.location.country }}
       </p>

@@ -1,7 +1,3 @@
-export type FetchData = {
-    data: EventData[];
-};
-
 export type EventData = {
     id: string;
     name: string;
