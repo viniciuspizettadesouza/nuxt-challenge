@@ -12,7 +12,7 @@ events.value = data.value ? data.value.data : [];
 </script>
 
 <template>
-  <h1>Welcome to 3cket Home Page</h1>
+  <h1 class="text-4xl font-semibold mb-4">Welcome to 3cket Home Page</h1>
 
   <div v-if="pending" class="loading">Loading...</div>
 
@@ -21,6 +21,11 @@ events.value = data.value ? data.value.data : [];
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-    <EventCard v-for="event in events" :key="event.id" :event="event" />
+    <EventCard
+      v-for="event in events"
+      :key="event.id"
+      :event="event"
+      @click="navigateTo(`/events/${event.slug}`)"
+    />
   </div>
 </template>
