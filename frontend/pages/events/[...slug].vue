@@ -5,14 +5,15 @@ const route = useRoute();
 const event = ref<EventData>();
 
 function formatDate(datetime: string) {
-  const options = {
+  const options: Intl.DateTimeFormatOptions = {
     year: "numeric",
     month: "long",
     day: "numeric",
     hour: "2-digit",
     minute: "2-digit",
   };
-  return new Date(datetime).toLocaleDateString(undefined, options);
+  const locale = "en-US";
+  return new Date(datetime).toLocaleDateString(locale, options);
 }
 
 const { data, pending, error } = await useFetch<{ data: EventData }>(
@@ -27,20 +28,16 @@ if (data.value) {
 <template>
   <div v-if="pending" class="loading">Loading...</div>
 
-  <div v-if="error" class="error flex flex-col items-center">
-    <h2>Evento não encontrado, deseja voltar para a página principal?</h2>
-    <button
-      @click="navigateTo('/')"
-      class="mt-4 w-1/3 rounded bg-blue-500 px-4 py-2 text-white"
-    >
-      Voltar
-    </button>
-  </div>
+  <EventNotFound v-if="error" />
 
   <div v-if="event" class="min-h-screen px-4 py-8">
-    <section class="mb-4 flex items-center justify-between">
-      <h1 class="text-3xl font-semibold">{{ event.name }}</h1>
-      <button class="mt-2 w-32 rounded bg-blue-500 p-2 text-white">
+    <section class="mb-4 flex flex-wrap items-center justify-between">
+      <h1 class="order-1 w-full text-3xl font-semibold sm:w-auto">
+        {{ event.name }}
+      </h1>
+      <button
+        class="order-2 mt-2 w-full rounded bg-blue-500 p-2 text-white sm:mt-0 sm:w-32"
+      >
         Buy Tickets
         <Icon name="mdi:chevron-right" class="" />
       </button>
@@ -65,7 +62,17 @@ if (data.value) {
         orci. Sed facilisis eleifend ex, id hendrerit velit maximus a.
       </p>
 
-      <div class="grid grid-cols-2 gap-4">
+      <p class="mb-3">
+        Phasellus dui felis, semper ac risus vitae, porttitor vestibulum ex.
+        Phasellus ac semper arcu. Donec et tellus et ipsum pulvinar gravida.
+        Quisque non sem ullamcorper orci vulputate ultricies vitae vitae diam.
+        Vivamus quis cursus lorem. Vivamus commodo diam at lectus convallis
+        suscipit. Nullam dignissim vestibulum nibh sollicitudin pellentesque.
+        Maecenas ante tortor, pulvinar eu ipsum suscipit, sollicitudin sodales
+        mauris. Curabitur pharetra metus mauris, nec viverra ipsum fringilla ac.
+      </p>
+
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
           <img
             v-if="event.theme.background_image.url"
@@ -92,7 +99,9 @@ if (data.value) {
             {{ event.price_range.minimum.currency }}
           </p>
 
-          <button class="mt-2 w-32 rounded bg-blue-500 p-2 text-white">
+          <button
+            class="mt-2 flex w-full max-w-[10rem] items-center justify-center rounded bg-blue-500 p-2 text-white sm:w-36"
+          >
             Buy Tickets
             <Icon name="mdi:chevron-right" class="" />
           </button>

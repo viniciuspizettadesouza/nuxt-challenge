@@ -13,6 +13,7 @@ events.value = data.value ? data.value.data : [];
 
 <template>
   <h1 class="mb-4 text-4xl font-semibold">Welcome to 3cket Home Page</h1>
+  <h2 class="mb-4 text-2xl font-semibold">Check all our events below</h2>
 
   <div v-if="pending" class="loading">Loading...</div>
 

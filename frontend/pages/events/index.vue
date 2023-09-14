@@ -1,1 +1,3 @@
-<template>Evento não encontrado</template>
+<template>
+  <EventNotFound />
+</template>

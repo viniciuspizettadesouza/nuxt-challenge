@@ -8,7 +8,7 @@ const props = defineProps({
 
 <template>
   <div
-    class="hover:cursor-pointer: mx-auto w-full max-w-md overflow-hidden rounded bg-white shadow-lg"
+    class="mx-auto w-full max-w-md overflow-hidden rounded bg-white shadow-lg hover:cursor-pointer"
   >
     <img
       :src="event.theme.background_image.url"
