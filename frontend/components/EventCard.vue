@@ -7,18 +7,20 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="max-w-md rounded overflow-hidden shadow-lg bg-white">
+  <div
+    class="hover:cursor-pointer: mx-auto w-full max-w-md overflow-hidden rounded bg-white shadow-lg"
+  >
     <img
       :src="event.theme.background_image.url"
       alt="Event Image"
-      class="w-full h-32 object-cover"
+      class="h-32 w-full object-cover"
     />
     <div class="px-6 py-4">
-      <div class="font-bold text-xl mb-2 text-gray-700">{{ event.name }}</div>
-      <p class="text-gray-700 text-base">
+      <div class="mb-2 text-xl font-bold text-gray-700">{{ event.name }}</div>
+      <p class="text-base text-gray-700">
         Location: {{ event.location.name }}, {{ event.location.country }}
       </p>
-      <p class="text-gray-700 text-base">
+      <p class="text-base text-gray-700">
         Price Range: {{ event.price_range.minimum.amount }} -
         {{ event.price_range.maximum.amount }}
         {{ event.price_range.minimum.currency }}

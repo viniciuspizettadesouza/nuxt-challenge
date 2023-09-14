@@ -16,7 +16,7 @@ function formatDate(datetime: string) {
 }
 
 const { data, pending, error } = await useFetch<{ data: EventData }>(
-  `http://localhost:3001/events/${route.params.slug}`
+  `http://localhost:3001/events/${route.params.slug}`,
 );
 
 if (data.value) {
@@ -31,29 +31,29 @@ if (data.value) {
     <h2>Evento não encontrado, deseja voltar para a página principal?</h2>
     <button
       @click="navigateTo('/')"
-      class="bg-blue-500 text-white px-4 py-2 rounded mt-4 w-1/3"
+      class="mt-4 w-1/3 rounded bg-blue-500 px-4 py-2 text-white"
     >
       Voltar
     </button>
   </div>
 
-  <div v-if="event" class="min-h-screen py-8 px-4">
-    <section class="flex justify-between items-center mb-4">
+  <div v-if="event" class="min-h-screen px-4 py-8">
+    <section class="mb-4 flex items-center justify-between">
       <h1 class="text-3xl font-semibold">{{ event.name }}</h1>
-      <button class="bg-blue-500 text-white p-2 rounded mt-2 w-32">
+      <button class="mt-2 w-32 rounded bg-blue-500 p-2 text-white">
         Buy Tickets
         <Icon name="mdi:chevron-right" class="" />
       </button>
     </section>
 
     <div
-      class="bg-cover bg-center h-64 md:h-96"
+      class="h-64 bg-cover bg-center md:h-96"
       :style="{
         backgroundImage: `url('${event.theme.background_image.url}')`,
       }"
     ></div>
 
-    <div class="bg-white shadow-md rounded-lg p-6">
+    <div class="rounded-lg bg-white p-6 shadow-md">
       <p class="mb-3">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
         vehicula sapien euismod tempor tristique. Fusce in ultrices lorem. Morbi
@@ -73,7 +73,7 @@ if (data.value) {
             alt="Event Image"
             class="w-full rounded-lg"
           />
-          <div v-else class="w-full h-40 bg-gray-300 rounded-lg"></div>
+          <div v-else class="h-40 w-full rounded-lg bg-gray-300"></div>
         </div>
 
         <section>
@@ -92,7 +92,7 @@ if (data.value) {
             {{ event.price_range.minimum.currency }}
           </p>
 
-          <button class="bg-blue-500 text-white p-2 rounded mt-2 w-32">
+          <button class="mt-2 w-32 rounded bg-blue-500 p-2 text-white">
             Buy Tickets
             <Icon name="mdi:chevron-right" class="" />
           </button>
